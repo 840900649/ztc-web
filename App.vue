@@ -9,7 +9,7 @@
 
 	export default {
 		onLaunch: function() {
-			 
+			 //判断是否处于登录中
 			let uniIdToken = uni.getStorageSync('user')
 			if (uniIdToken) {
 				var userInfo=uni.getStorageSync('user');
@@ -17,6 +17,7 @@
 				var isToken=uni.getStorageSync("userToken");
 				this.login(userInfo)
 				if(!isRegister){ 
+					//通过openid 获取用户登录信息
 					this.adq.get("/ztc/EntUserx/"+userInfo.openid).then((result)=>{
 						if(result.success){
 							uni.setStorageSync("isRegister",true);

@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App'
 import store from './store'
-import adq from 'common/config.js'
+import adq from 'common/adq.js'
 
 Vue.config.productionTip = false
 

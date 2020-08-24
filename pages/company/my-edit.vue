@@ -79,7 +79,7 @@
 			formSubmit() {
 				var form = this.forms;
 				this.adq.post("/ztc/EntUserx", form).then(result => {
-					console.log(123321);
+					 
 					if (result.success) {
 						uni.navigateTo({
 							url: "/pages/company/index"

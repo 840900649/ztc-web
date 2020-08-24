@@ -39,22 +39,42 @@
 
 			let uniIdToken = uni.getStorageSync('user')
 			if (!uniIdToken) {
-				var search=window.location.search;
-				console.log(search,"查询值");
-				uni.request({
-					url: this.adq.baseUrl + "/oauth/userinfo"+search,
-					method: "GET",
-					success: (response) => {
-						var result = response.data; 
-						if (result.success) { 
-							uni.setStorageSync("user",result.data);
-							this.login(uni.getStorageSync('user'));
-							alert("登录成功！");
-						} else {
-							this.guideToLogin();
-						}
+				var search=window.location.search; 
+				//通过code 自动登录
+				this.adq.get("/oauth/userinfo"+search,null).then(result=>{ 
+					if (result.success) { 
+						var userInfo=result.data;
+						uni.setStorageSync("user",result.data);
+						this.login(uni.getStorageSync('user'));
+						//通过openid 获取注册信息
+						this.adq.get("/ztc/EntUserx/"+userInfo.openid).then((result)=>{
+							if(result.success){ 
+							    uni.setStorageSync("isRegister",true);
+								//若已注册成功，则直接获取令牌
+								this.adq.token.getToken().then(result=>{
+									console.log("令牌读取成功！",result);
+									if(result.success){
+										  uni.navigateTo({
+										  	url:"/pages/company/index"
+										  }) 
+									} 
+								}); 
+							}
+							else{
+								uni.showToast({
+									title:"首次登录，需要跳转页面进行数据绑定！"
+								})
+								//首次登录，需要进行数据绑定
+								uni.navigateTo({
+									url:"/pages/company/my-edit"
+								})
+							}
+						})
+					} else {
+						this.guideToLogin();
 					}
-				})
+					
+				}); 
 			}
 			else{
 				uni.navigateTo({

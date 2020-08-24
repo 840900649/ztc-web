@@ -1,5 +1,6 @@
 let adq = {
-	baseUrl: "https://ztc-wx.adq.xin",
+	//baseUrl: "https://ztc-wx.adq.xin",
+	baseUrl: "http://127.0.0.1:8860",
 	appName: "息烽服务直通车",
 	appId: "wxb6ba2f54d4d6d31c",
 	redirectUri: "https://ztc-wx.adq.xin/oauth/index?returnUrl=https://ztc-gzh.adq.xin/pages/company/index",
@@ -26,6 +27,7 @@ let adq = {
 		value:"",
 		getToken(){//获取系统登录令牌 
 			 var id=uni.getStorageSync("user").openid;
+			 console.log("登录数据：",id); 
 			return adq.post("/ztc/TokenAuth/login",{id:id,code:"123456" }).then(result=>{ 
 				if(result.success){ 
 					adq.token.value=result.data.token;
@@ -37,18 +39,21 @@ let adq = {
 	}, 
 	headers: {}, 
 	prefix: "", //接口前缀
-	get: (url, data) => {
+	get: (url, data,options) => {
 		return adq.request(url, "GET", data);
 	},
-	post: (url, data) => {
+	post: (url, data,options) => {
 		uni.showLoading({
 			title: "数据保存中......",
 		})
 		return adq.request(url, "POST", data);
 	},
-	request: (url, method, data) => {
+	 /**
+	  * @param {any} options 参数格式：{tips:false}  
+	  */
+	request: (url, method, data,options) => {
 		console.log("测试请求！");
-
+		if(!options)options={};
 		switch (adq.authType) {
 			case 1:
 				adq.headers['Authorization'] = `Bearer ${
@@ -66,7 +71,7 @@ let adq = {
 		}).then(res => {
 			uni.hideLoading();
 			if (res[1].data && res[1].statusCode == 200) {
-				if (method == "POST") {
+				if (method == "POST"&&options.tips) {
 					uni.showToast({
 						title: res[1].data.msg,
 						duration: 2000,
@@ -75,7 +80,7 @@ let adq = {
 				}
 				return res[1].data;
 			} else {
-				if (method == "POST") {
+				if (method == "POST"&&options.tips) {
 					uni.showToast({
 						title: "网络异常，请稍后重试",
 						duration: 2000,
