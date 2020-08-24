@@ -1,0 +1,111 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页,
+		{
+			"path": "pages/main/main",
+			"style": {
+				"navigationBarTitleText": "登录模板"
+			}
+		}, {
+			"path": "pages/login/login",
+			"style": {
+				"navigationBarTitleText": "登录"
+			}
+		}, {
+			"path": "pages/reg/reg",
+			"style": {
+				"navigationBarTitleText": "注册"
+			}
+		}, {
+			"path": "pages/pwd/pwd",
+			"style": {
+				"navigationBarTitleText": "找回密码"
+			}
+		}, {
+			"path": "pages/user/user",
+			"style": {
+				"navigationBarTitleText": "我的"
+			}
+		}, {
+			"path": "pages/company/index",
+			"style": {
+				"navigationBarTitleText": "企业主页"
+			}
+		}, {
+			"path": "pages/company/direct-mail",
+			"style": {
+				"navigationBarTitleText": "直通信箱"
+			}
+		}, {
+			"path": "pages/company/history_letter",
+			"style": {
+				"navigationBarTitleText": "历史信件"
+			}
+		}, {
+			"path": "pages/company/my",
+			"style": {
+				"navigationBarTitleText": "基本信息"
+			}
+			
+		}
+		, {
+			"path": "pages/company/my-edit",
+			"style": {
+				"navigationBarTitleText": "填写基本信息"
+			}
+			
+		}
+		, {
+			"path": "pages/company/info",
+			"style": {
+				"navigationBarTitleText": "企业信息"
+			}
+		}, {
+			"path": "pages/organ/index",
+			"style": {
+				"navigationBarTitleText": "单位主页"
+			}
+		}, {
+			"path": "pages/organ/direct-mail",
+			"style": {
+				"navigationBarTitleText": "代办事项"
+			}
+		}, {
+			"path": "pages/organ/history_letter",
+			"style": {
+				"navigationBarTitleText": "历史信件"
+			}
+		}, {
+			"path": "pages/organ/my",
+			"style": {
+				"navigationBarTitleText": "基本信息"
+			}
+		}, {
+			"path": "pages/organ/info",
+			"style": {
+				"navigationBarTitleText": "单位信息"
+			}
+		}, {
+			"path": "pages/organ/mail-details",
+			"style": {
+				"navigationBarTitleText": "信件办理"
+			}
+		},
+		 {
+			"path": "pages/organ/mail-accept",
+			"style": {
+				"navigationBarTitleText": "信件受理"
+			}
+		},
+		 {
+			"path": "pages/organ/mail-confirm",
+			"style": {
+				"navigationBarTitleText": "确认审核"
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "white",
+		"navigationBarBackgroundColor": "#0faeff",
+		"backgroundColor": "#fbf9fe"
+	}
+}
